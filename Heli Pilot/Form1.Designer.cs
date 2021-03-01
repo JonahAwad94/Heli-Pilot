@@ -64,6 +64,7 @@
             this.scoreLabel = new System.Windows.Forms.Label();
             this.gameOverLabel = new System.Windows.Forms.Label();
             this.playAgainButton = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Helicopter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1A)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1B)).BeginInit();
@@ -93,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.obstacle10A)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle14B)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle14A)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // Helicopter
@@ -552,6 +554,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.obstacle10A)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle14B)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle14A)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -593,6 +596,7 @@
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label gameOverLabel;
         private System.Windows.Forms.Button playAgainButton;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 
