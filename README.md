@@ -5,7 +5,7 @@
 
 # Quick Install Instructions
 
-1. Download "Quick Install.rar"
+1. Download "Quick Installer.rar"
 2. Extract Files
 3. Run "Heli Pilot.application"
 
