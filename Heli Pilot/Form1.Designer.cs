@@ -65,6 +65,8 @@
             this.gameOverLabel = new System.Windows.Forms.Label();
             this.playAgainButton = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.highScoreLabel = new System.Windows.Forms.Label();
+            this.NewHighScoreLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Helicopter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1A)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1B)).BeginInit();
@@ -452,7 +454,7 @@
             this.gameOverLabel.BackColor = System.Drawing.Color.Transparent;
             this.gameOverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameOverLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.gameOverLabel.Location = new System.Drawing.Point(351, 232);
+            this.gameOverLabel.Location = new System.Drawing.Point(352, 193);
             this.gameOverLabel.Name = "gameOverLabel";
             this.gameOverLabel.Size = new System.Drawing.Size(207, 39);
             this.gameOverLabel.TabIndex = 31;
@@ -467,7 +469,7 @@
             this.playAgainButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.playAgainButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playAgainButton.ForeColor = System.Drawing.Color.White;
-            this.playAgainButton.Location = new System.Drawing.Point(382, 274);
+            this.playAgainButton.Location = new System.Drawing.Point(382, 235);
             this.playAgainButton.Name = "playAgainButton";
             this.playAgainButton.Size = new System.Drawing.Size(136, 36);
             this.playAgainButton.TabIndex = 32;
@@ -476,6 +478,32 @@
             this.playAgainButton.Visible = false;
             this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
             // 
+            // highScoreLabel
+            // 
+            this.highScoreLabel.AutoSize = true;
+            this.highScoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.highScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highScoreLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.highScoreLabel.Location = new System.Drawing.Point(332, 274);
+            this.highScoreLabel.Name = "highScoreLabel";
+            this.highScoreLabel.Size = new System.Drawing.Size(207, 39);
+            this.highScoreLabel.TabIndex = 33;
+            this.highScoreLabel.Text = "High Score: ";
+            this.highScoreLabel.Visible = false;
+            // 
+            // NewHighScoreLabel
+            // 
+            this.NewHighScoreLabel.AutoSize = true;
+            this.NewHighScoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.NewHighScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewHighScoreLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.NewHighScoreLabel.Location = new System.Drawing.Point(287, 313);
+            this.NewHighScoreLabel.Name = "NewHighScoreLabel";
+            this.NewHighScoreLabel.Size = new System.Drawing.Size(335, 39);
+            this.NewHighScoreLabel.TabIndex = 34;
+            this.NewHighScoreLabel.Text = "NEW HIGH SCORE!";
+            this.NewHighScoreLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +511,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.NewHighScoreLabel);
+            this.Controls.Add(this.highScoreLabel);
             this.Controls.Add(this.playAgainButton);
             this.Controls.Add(this.gameOverLabel);
             this.Controls.Add(this.scoreLabel);
@@ -597,6 +627,8 @@
         private System.Windows.Forms.Label gameOverLabel;
         private System.Windows.Forms.Button playAgainButton;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Label highScoreLabel;
+        private System.Windows.Forms.Label NewHighScoreLabel;
     }
 }
 
