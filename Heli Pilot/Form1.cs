@@ -21,11 +21,13 @@ namespace Heli_Pilot
         int HeliSprite = 0;
 
         Random rand = new Random();
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.music);
 
         public Form1()
         {
             InitializeComponent();
             this.highscore = LoadHighScore();
+            player.PlayLooping();
         }
 
         private int LoadHighScore()
@@ -324,6 +326,7 @@ namespace Heli_Pilot
         {
             // End game
             gameTimer.Stop();
+            player.Stop();
 
             // Display Game Over and play again button 
             gameOverLabel.Visible = true;
