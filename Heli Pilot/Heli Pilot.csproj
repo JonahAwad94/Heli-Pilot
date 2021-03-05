@@ -24,8 +24,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <PublisherName>Jonah Alexander</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -135,6 +135,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\explosion4.png" />
+    <None Include="Resources\explosion3.png" />
+    <None Include="Resources\explosion2.png" />
+    <None Include="Resources\explosion1.png" />
+    <None Include="Resources\ExplosionSound.wav" />
     <Content Include="Resources\helicopter1_S4f_icon.ico" />
     <None Include="Resources\music.wav" />
   </ItemGroup>

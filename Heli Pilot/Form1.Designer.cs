@@ -67,6 +67,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.highScoreLabel = new System.Windows.Forms.Label();
             this.NewHighScoreLabel = new System.Windows.Forms.Label();
+            this.endGameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Helicopter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1A)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1B)).BeginInit();
@@ -504,6 +505,10 @@
             this.NewHighScoreLabel.Text = "NEW HIGH SCORE!";
             this.NewHighScoreLabel.Visible = false;
             // 
+            // endGameTimer
+            // 
+            this.endGameTimer.Tick += new System.EventHandler(this.endGameTimer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -629,6 +634,7 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label highScoreLabel;
         private System.Windows.Forms.Label NewHighScoreLabel;
+        private System.Windows.Forms.Timer endGameTimer;
     }
 }
 

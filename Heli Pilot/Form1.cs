@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,21 +14,22 @@ namespace Heli_Pilot
 {
     public partial class Form1 : Form
     {
-
         int obstacleSpeed = 15;
+        int explosionSprite = 0;
         int verticleDirection = 0;
         int score = 0;
         int highscore = 0;
         int HeliSprite = 0;
+        readonly Random rand = new Random();
+        readonly System.Media.SoundPlayer musicPlayer = new System.Media.SoundPlayer(Properties.Resources.music);
+        readonly System.Media.SoundPlayer explosionPlayer = new System.Media.SoundPlayer(Properties.Resources.ExplosionSound);
 
-        Random rand = new Random();
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.music);
 
         public Form1()
         {
             InitializeComponent();
             this.highscore = LoadHighScore();
-            player.PlayLooping();
+            musicPlayer.PlayLooping();
         }
 
         private int LoadHighScore()
@@ -324,9 +326,12 @@ namespace Heli_Pilot
 
         private void EndGame()
         {
-            // End game
+            // End game timer, start end game timer
             gameTimer.Stop();
-            player.Stop();
+            endGameTimer.Start();
+
+            musicPlayer.Stop();
+            explosionPlayer.Play();
 
             // Display Game Over and play again button 
             gameOverLabel.Visible = true;
@@ -349,6 +354,36 @@ namespace Heli_Pilot
         private void playAgainButton_Click(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        // End game timer used for explosion animation
+        private void endGameTimer_Tick(object sender, EventArgs e)
+        {
+            if (explosionSprite == 0)
+            {
+                Helicopter.Image = Properties.Resources.explosion1;
+                explosionSprite++;
+            }
+            else if (explosionSprite == 1)
+            {
+                Helicopter.Image = Properties.Resources.explosion2;
+                explosionSprite++;
+            }
+            else if (explosionSprite == 2)
+            {
+                Helicopter.Image = Properties.Resources.explosion3;
+                explosionSprite++;
+            }
+            else if (explosionSprite == 3)
+            {
+                Helicopter.Image = Properties.Resources.explosion4;
+                explosionSprite++;
+            }
+            else if (explosionSprite == 4)
+            {
+                endGameTimer.Stop();
+                Helicopter.Visible = false;
+            }
         }
     }
 }
