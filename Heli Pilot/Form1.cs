@@ -66,40 +66,48 @@ namespace Heli_Pilot
 
         private void KeyDownPressed(object sender, KeyEventArgs e)
         {
+            // Move Down
             if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
             {
                 verticleDirection = 15;
             }
 
+            // Move Up
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
             {
                 verticleDirection = -15;
             }
 
+            // Mute/unmute music
             if (e.KeyCode == Keys.M)
             {
                 if (musicMuted)
                 {
                     musicPlayer.PlayLooping();
+                    muteLabel.Visible = false;
                     musicMuted = false;
                 }
                 else
                 {
                     musicPlayer.Stop();
+                    muteLabel.Visible = true;
                     musicMuted = true;
                 }
             }
 
+            // Pause/resume game
             if (e.KeyCode == Keys.P)
             {
                 if (gamePaused)
                 {
                     gameTimer.Start();
+                    pauseLabel.Visible = false;
                     gamePaused = false;
                 }
                 else
                 {
                     gameTimer.Stop();
+                    pauseLabel.Visible = true;
                     gamePaused = true;
                 }
             }

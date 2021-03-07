@@ -68,6 +68,8 @@
             this.highScoreLabel = new System.Windows.Forms.Label();
             this.NewHighScoreLabel = new System.Windows.Forms.Label();
             this.endGameTimer = new System.Windows.Forms.Timer(this.components);
+            this.pauseLabel = new System.Windows.Forms.Label();
+            this.muteLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Helicopter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1A)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1B)).BeginInit();
@@ -509,6 +511,30 @@
             // 
             this.endGameTimer.Tick += new System.EventHandler(this.endGameTimer_Tick);
             // 
+            // pauseLabel
+            // 
+            this.pauseLabel.AutoSize = true;
+            this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
+            this.pauseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseLabel.Location = new System.Drawing.Point(720, 34);
+            this.pauseLabel.Name = "pauseLabel";
+            this.pauseLabel.Size = new System.Drawing.Size(148, 25);
+            this.pauseLabel.TabIndex = 35;
+            this.pauseLabel.Text = "Game Paused";
+            this.pauseLabel.Visible = false;
+            // 
+            // muteLabel
+            // 
+            this.muteLabel.AutoSize = true;
+            this.muteLabel.BackColor = System.Drawing.Color.Transparent;
+            this.muteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.muteLabel.Location = new System.Drawing.Point(731, 9);
+            this.muteLabel.Name = "muteLabel";
+            this.muteLabel.Size = new System.Drawing.Size(135, 25);
+            this.muteLabel.TabIndex = 36;
+            this.muteLabel.Text = "Music Muted";
+            this.muteLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,6 +542,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.muteLabel);
+            this.Controls.Add(this.pauseLabel);
             this.Controls.Add(this.NewHighScoreLabel);
             this.Controls.Add(this.highScoreLabel);
             this.Controls.Add(this.playAgainButton);
@@ -635,6 +663,8 @@
         private System.Windows.Forms.Label highScoreLabel;
         private System.Windows.Forms.Label NewHighScoreLabel;
         private System.Windows.Forms.Timer endGameTimer;
+        private System.Windows.Forms.Label pauseLabel;
+        private System.Windows.Forms.Label muteLabel;
     }
 }
 
