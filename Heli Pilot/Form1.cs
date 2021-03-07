@@ -14,12 +14,17 @@ namespace Heli_Pilot
 {
     public partial class Form1 : Form
     {
+
+        // Obstacle speed is currently unchanged throughout gameplay,
+        // can be raised later to increase difficulty.
         int obstacleSpeed = 15;
         int explosionSprite = 0;
         int verticleDirection = 0;
         int score = 0;
         int highscore = 0;
         int HeliSprite = 0;
+        bool gamePaused = false;
+        bool musicMuted = false;
         readonly Random rand = new Random();
         readonly System.Media.SoundPlayer musicPlayer = new System.Media.SoundPlayer(Properties.Resources.music);
         readonly System.Media.SoundPlayer explosionPlayer = new System.Media.SoundPlayer(Properties.Resources.ExplosionSound);
@@ -70,6 +75,34 @@ namespace Heli_Pilot
             {
                 verticleDirection = -15;
             }
+
+            if (e.KeyCode == Keys.M)
+            {
+                if (musicMuted)
+                {
+                    musicPlayer.PlayLooping();
+                    musicMuted = false;
+                }
+                else
+                {
+                    musicPlayer.Stop();
+                    musicMuted = true;
+                }
+            }
+
+            if (e.KeyCode == Keys.P)
+            {
+                if (gamePaused)
+                {
+                    gameTimer.Start();
+                    gamePaused = false;
+                }
+                else
+                {
+                    gameTimer.Stop();
+                    gamePaused = true;
+                }
+            }
         }
 
         private void KeyUpPressed(object sender, KeyEventArgs e)
@@ -82,6 +115,26 @@ namespace Heli_Pilot
             Helicopter.Top += verticleDirection;
             score++;
             gameScore.Text = score.ToString();
+
+            // IDEA FOR LATER
+            // Can be used with increased obstacle speed
+            // Change background game progress
+            //if (score == 500)
+            //{
+            //    this.BackColor = Color.FromArgb(90, 180, 180);
+            //}
+            //else if (score == 1000)
+            //{
+            //    this.BackColor = Color.FromArgb(60, 120, 120);
+            //}
+            //else if (score == 1500)
+            //{
+            //    this.BackColor = Color.FromArgb(30, 60, 60);
+            //}
+            //else if (score == 2000)
+            //{
+            //    this.BackColor = Color.FromArgb(15, 30, 30);
+            //}
 
             if (HeliSprite == 0)
             {
