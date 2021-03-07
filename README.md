@@ -13,6 +13,8 @@ Helicopter Pilot game made with Windows Forms and ASP.NET/C#
 # Controls
 - _W_ or _Up Key_ to go up
 - _S_ or _Down Key_ to go down
+- _M_ to mute/unmute music
+- _P_ to pause/resume game
 
 # Notes:
 - Windows Forms is only intended to work on the Windows operating system.
