@@ -1,5 +1,5 @@
 # Heli Pilot
- Helicopter Pilot game made with Windows Forms and ASP.NET/C#
+Helicopter Pilot game made with Windows Forms and ASP.NET/C#
  
 <img src="/Heli Pilot/Resources/Demo.png">
 
@@ -11,10 +11,10 @@
 4. Run "Heli Pilot.application"
 
 # Controls
+- _W_ or _Up Key_ to go up
+- _S_ or _Down Key_ to go down
 
-W or Up Key to go up
-
-S or Down Key to go down
-
-# Note:
-Windows Forms is only intended to work on the Windows operating system.
+# Notes:
+- Windows Forms is only intended to work on the Windows operating system.
+- Current release: 1.0.3.0
+- To play the latest version, be sure to uninstall any previous versions first.
