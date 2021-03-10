@@ -18,8 +18,10 @@ namespace Heli_Pilot
         // Obstacle speed is currently unchanged throughout gameplay,
         // can be raised later to increase difficulty.
         int obstacleSpeed = 15;
+
         int explosionSprite = 0;
         int verticleDirection = 0;
+        int horizontalDirection = 0;
         int score = 0;
         int highscore = 0;
         int HeliSprite = 0;
@@ -69,13 +71,25 @@ namespace Heli_Pilot
             // Move Down
             if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
             {
-                verticleDirection = 15;
+                verticleDirection = 12;
             }
 
             // Move Up
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
             {
-                verticleDirection = -15;
+                verticleDirection = -12;
+            }
+
+            // Move Left
+            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
+            {
+                horizontalDirection = -12;
+            }
+
+            // Move Right
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
+            {
+                horizontalDirection = 12;
             }
 
             // Mute/unmute music
@@ -116,11 +130,13 @@ namespace Heli_Pilot
         private void KeyUpPressed(object sender, KeyEventArgs e)
         {
             verticleDirection = 0;
+            horizontalDirection = 0;
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             Helicopter.Top += verticleDirection;
+            Helicopter.Left += horizontalDirection;
             score++;
             gameScore.Text = score.ToString();
 
@@ -144,6 +160,8 @@ namespace Heli_Pilot
             //    this.BackColor = Color.FromArgb(15, 30, 30);
             //}
 
+            // Iterate through all Helicopter sprites to give the
+            // illusion of the Helicopter's rotors spinning
             if (HeliSprite == 0)
             {
                 Helicopter.Image = Properties.Resources.helicopter1;
@@ -201,7 +219,6 @@ namespace Heli_Pilot
             }
 
                 //Move all obstacles
-
                 obstacle1A.Left -= obstacleSpeed;
             if (obstacle1A.Left < -100)
             {
