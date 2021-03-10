@@ -11,8 +11,10 @@ Helicopter Pilot game made with Windows Forms and ASP.NET/C#
 4. Run "Heli Pilot.application"
 
 # Controls
-- _W_ or _Up Key_ to go up
-- _S_ or _Down Key_ to go down
+- _W_ or _Up Key_ to move up
+- _S_ or _Down Key_ to move down
+- _D_ or _Right Key_ to move right
+- _A_ or _Left Key_ to move left
 - _M_ to mute/unmute music
 - _P_ to pause/resume game
 
