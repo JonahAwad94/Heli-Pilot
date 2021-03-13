@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Heli_Pilot
 {
-    public partial class Form1 : Form
+    public partial class Game : Form
     {
-
-        // Obstacle speed is currently unchanged throughout gameplay,
-        // can be raised later to increase difficulty.
-        int obstacleSpeed = 15;
+        readonly int obstacleSpeed = 15;
 
         int explosionSprite = 0;
         int verticleDirection = 0;
@@ -32,13 +22,17 @@ namespace Heli_Pilot
         readonly System.Media.SoundPlayer explosionPlayer = new System.Media.SoundPlayer(Properties.Resources.ExplosionSound);
 
 
-        public Form1()
+        public Game()
         {
             InitializeComponent();
             this.highscore = LoadHighScore();
             musicPlayer.PlayLooping();
         }
 
+        /// <summary>
+        /// Loads high score from text file
+        /// </summary>
+        /// <returns></returns>
         private int LoadHighScore()
         {
             if(File.Exists("HighScore.txt"))
@@ -56,6 +50,10 @@ namespace Heli_Pilot
             return 0;
         }
 
+        /// <summary>
+        /// Saves high score to text file
+        /// </summary>
+        /// <param name="newScore"></param>
         private void SaveHighScore(int newScore)
         {
             File.WriteAllText("HighScore.txt", newScore.ToString());
@@ -63,21 +61,29 @@ namespace Heli_Pilot
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            DoubleBuffered = true;
         }
 
+        /// <summary>
+        /// - Moves helicopter
+        /// - pauses/resumes game
+        /// - mutes/unmutes music
+        /// depending on key pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KeyDownPressed(object sender, KeyEventArgs e)
         {
-            // Move Down
-            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
-            {
-                verticleDirection = 12;
-            }
-
             // Move Up
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
             {
                 verticleDirection = -12;
+            }
+
+            // Move Down
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
+            {
+                verticleDirection = 12;
             }
 
             // Move Left
@@ -127,41 +133,74 @@ namespace Heli_Pilot
             }
         }
 
+        /// <summary>
+        /// Resets helicopter's movement when key is no longer pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KeyUpPressed(object sender, KeyEventArgs e)
         {
             verticleDirection = 0;
             horizontalDirection = 0;
         }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Houses majority of game logic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameTimer_Tick(object sender, EventArgs e)
         {
             Helicopter.Top += verticleDirection;
             Helicopter.Left += horizontalDirection;
             score++;
             gameScore.Text = score.ToString();
 
-            // IDEA FOR LATER
-            // Can be used with increased obstacle speed
-            // Change background game progress
-            //if (score == 500)
-            //{
-            //    this.BackColor = Color.FromArgb(90, 180, 180);
-            //}
-            //else if (score == 1000)
-            //{
-            //    this.BackColor = Color.FromArgb(60, 120, 120);
-            //}
-            //else if (score == 1500)
-            //{
-            //    this.BackColor = Color.FromArgb(30, 60, 60);
-            //}
-            //else if (score == 2000)
-            //{
-            //    this.BackColor = Color.FromArgb(15, 30, 30);
-            //}
+
+            // Increase speed, change background
+            if (score == 500)
+            {
+                this.BackColor = Color.FromArgb(90, 180, 180);
+                gameTimer.Interval = 25;
+                speedUp.Text = "This is too easy...let's speed it up.";
+                speedUp.Visible = true;
+            }
+            else if (score == 600)
+                speedUp.Visible = false;
+            else if (score == 1000)
+            {
+                this.BackColor = Color.FromArgb(60, 120, 120);
+                gameTimer.Interval = 20;
+                speedUp.ForeColor = Color.LightGray;
+                speedUp.Text = "Not bad...More speed!";
+                speedUp.Visible = true;
+
+                gameScore.ForeColor = Color.LightGray;
+                scoreLabel.ForeColor = Color.LightGray;
+            }
+            else if (score == 1100)
+                speedUp.Visible = false;
+            else if (score == 1500)
+            {
+                this.BackColor = Color.FromArgb(30, 60, 60);
+                gameTimer.Interval = 16;
+                speedUp.Text = "You're good...FULL SPEED AHEAD!!!";
+                speedUp.Visible = true;
+
+            }
+            else if (score == 1650)
+                speedUp.Visible = false;
+            else if (score == 5000)
+            {
+                speedUp.Text = "Impressive...SPEED not increased. ;)";
+                speedUp.Visible = true;
+            }
+            else if (score == 5150)
+                speedUp.Visible = false;
 
             // Iterate through all Helicopter sprites to give the
             // illusion of the Helicopter's rotors spinning
+
             if (HeliSprite == 0)
             {
                 Helicopter.Image = Properties.Resources.helicopter1;
@@ -183,7 +222,8 @@ namespace Heli_Pilot
                 HeliSprite = 0;
             }
 
-            // Detect Collision
+
+            //Detect Collision
             if (
                 Helicopter.Bounds.IntersectsWith(obstacle1A.Bounds) ||
                 Helicopter.Bounds.IntersectsWith(obstacle1B.Bounds) ||
@@ -218,24 +258,28 @@ namespace Heli_Pilot
                 EndGame();
             }
 
-                //Move all obstacles
-                obstacle1A.Left -= obstacleSpeed;
+            // Transition all obstacles from right to left
+            obstacle1A.Left -= obstacleSpeed;
+            // When obstacle goes off screen, move it back to right of screen
             if (obstacle1A.Left < -100)
             {
-                obstacle1A.Left = 870;
+                obstacle1A.Left = 900;
+                // Obstacle's new height is a random offset from previous obstacle
                 obstacle1A.Top = obstacle14A.Top + rand.Next(-50, 51);
+                // Prevent obstacle from going too far off screen
                 if (obstacle1A.Top < -600)
                     obstacle1A.Top = -600;
                 if (obstacle1A.Top > -200)
                     obstacle1A.Top = -200;
             }
-            obstacle1B.Left = obstacle1A.Left;
-            obstacle1B.Top = obstacle1A.Top + 850;
+            // Bottom obstacle's lcocation is tied to top obstacle's location
+            obstacle1B.Left = obstacle1A.Left; 
+            obstacle1B.Top = obstacle1A.Top + 850; 
 
             obstacle2A.Left -= obstacleSpeed;
             if (obstacle2A.Left < -100)
             {
-                obstacle2A.Left = 870;
+                obstacle2A.Left = 900;
                 obstacle2A.Top = obstacle1A.Top + rand.Next(-50, 51);
                 if (obstacle2A.Top < -600)
                     obstacle2A.Top = -600;
@@ -248,7 +292,7 @@ namespace Heli_Pilot
             obstacle3A.Left -= obstacleSpeed;
             if (obstacle3A.Left < -100)
             {
-                obstacle3A.Left = 870;
+                obstacle3A.Left = 900;
                 obstacle3A.Top = obstacle2A.Top + rand.Next(-50, 51);
                 if (obstacle3A.Top < -600)
                     obstacle3A.Top = -600;
@@ -261,7 +305,7 @@ namespace Heli_Pilot
             obstacle4A.Left -= obstacleSpeed;
             if (obstacle4A.Left < -100)
             {
-                obstacle4A.Left = 870;
+                obstacle4A.Left = 900;
                 obstacle4A.Top = obstacle3A.Top + rand.Next(-50, 51);
                 if (obstacle4A.Top < -600)
                     obstacle4A.Top = -600;
@@ -274,7 +318,7 @@ namespace Heli_Pilot
             obstacle5A.Left -= obstacleSpeed;
             if (obstacle5A.Left < -100)
             {
-                obstacle5A.Left = 870;
+                obstacle5A.Left = 900;
                 obstacle5A.Top = obstacle4A.Top + rand.Next(-50, 51);
                 if (obstacle5A.Top < -600)
                     obstacle5A.Top = -600;
@@ -287,7 +331,7 @@ namespace Heli_Pilot
             obstacle6A.Left -= obstacleSpeed;
             if (obstacle6A.Left < -100)
             {
-                obstacle6A.Left = 870;
+                obstacle6A.Left = 900;
                 obstacle6A.Top = obstacle5A.Top + rand.Next(-50, 51);
                 if (obstacle6A.Top < -600)
                     obstacle6A.Top = -600;
@@ -300,7 +344,7 @@ namespace Heli_Pilot
             obstacle7A.Left -= obstacleSpeed;
             if (obstacle7A.Left < -100)
             {
-                obstacle7A.Left = 870;
+                obstacle7A.Left = 900;
                 obstacle7A.Top = obstacle6A.Top + rand.Next(-50, 51);
                 if (obstacle7A.Top < -600)
                     obstacle7A.Top = -600;
@@ -313,7 +357,7 @@ namespace Heli_Pilot
             obstacle8A.Left -= obstacleSpeed;
             if (obstacle8A.Left < -100)
             {
-                obstacle8A.Left = 870;
+                obstacle8A.Left = 900;
                 obstacle8A.Top = obstacle7A.Top + rand.Next(-50, 51);
                 if (obstacle8A.Top < -600)
                     obstacle8A.Top = -600;
@@ -326,7 +370,7 @@ namespace Heli_Pilot
             obstacle9A.Left -= obstacleSpeed;
             if (obstacle9A.Left < -100)
             {
-                obstacle9A.Left = 870;
+                obstacle9A.Left = 900;
                 obstacle9A.Top = obstacle8A.Top + rand.Next(-50, 51);
                 if (obstacle9A.Top < -600)
                     obstacle9A.Top = -600;
@@ -339,7 +383,7 @@ namespace Heli_Pilot
             obstacle10A.Left -= obstacleSpeed;
             if (obstacle10A.Left < -100)
             {
-                obstacle10A.Left = 870;
+                obstacle10A.Left = 900;
                 obstacle10A.Top = obstacle9A.Top + rand.Next(-50, 51);
                 if (obstacle10A.Top < -600)
                     obstacle10A.Top = -600;
@@ -352,7 +396,7 @@ namespace Heli_Pilot
             obstacle11A.Left -= obstacleSpeed;
             if (obstacle11A.Left < -100)
             {
-                obstacle11A.Left = 870;
+                obstacle11A.Left = 900;
                 obstacle11A.Top = obstacle10A.Top + rand.Next(-50, 51);
                 if (obstacle11A.Top < -600)
                     obstacle11A.Top = -600;
@@ -365,7 +409,7 @@ namespace Heli_Pilot
             obstacle12A.Left -= obstacleSpeed;
             if (obstacle12A.Left < -100)
             {
-                obstacle12A.Left = 870;
+                obstacle12A.Left = 900;
                 obstacle12A.Top = obstacle11A.Top + rand.Next(-50, 51);
                 if (obstacle12A.Top < -600)
                     obstacle12A.Top = -600;
@@ -378,7 +422,7 @@ namespace Heli_Pilot
             obstacle13A.Left -= obstacleSpeed;
             if (obstacle13A.Left < -100)
             {
-                obstacle13A.Left = 870;
+                obstacle13A.Left = 900;
                 obstacle13A.Top = obstacle12A.Top + rand.Next(-50, 51);
                 if (obstacle13A.Top < -600)
                     obstacle13A.Top = -600;
@@ -391,7 +435,7 @@ namespace Heli_Pilot
             obstacle14A.Left -= obstacleSpeed;
             if (obstacle14A.Left < -100)
             {
-                obstacle14A.Left = 870;
+                obstacle14A.Left = 900;
                 obstacle14A.Top = obstacle13A.Top + rand.Next(-50, 51);
                 if (obstacle14A.Top < -600)
                     obstacle14A.Top = -600;
@@ -402,6 +446,9 @@ namespace Heli_Pilot
             obstacle14B.Top = obstacle14A.Top + 850;
         }
 
+        /// <summary>
+        /// Game ending sequence
+        /// </summary>
         private void EndGame()
         {
             // End game timer, start end game timer
@@ -429,13 +476,22 @@ namespace Heli_Pilot
             highScoreLabel.Visible = true;
         }
 
-        private void playAgainButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Restarts game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayAgainButton_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
 
-        // End game timer used for explosion animation
-        private void endGameTimer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// End game timer, used for explosion animation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EndGameTimer_Tick(object sender, EventArgs e)
         {
             if (explosionSprite == 0)
             {

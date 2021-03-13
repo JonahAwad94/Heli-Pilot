@@ -20,5 +20,5 @@ Helicopter Pilot game made with Windows Forms and ASP.NET/C#
 
 # Notes:
 - Windows Forms is only intended to work on the Windows operating system.
-- Current release: 1.0.5.0
+- Current release: 1.0.6.0
 - To play the latest version, be sure to uninstall any previous versions first.

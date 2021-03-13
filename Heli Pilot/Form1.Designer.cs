@@ -1,6 +1,6 @@
 ﻿namespace Heli_Pilot
 {
-    partial class Form1
+    partial class Game
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.Helicopter = new System.Windows.Forms.PictureBox();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.obstacle1A = new System.Windows.Forms.PictureBox();
@@ -70,6 +70,7 @@
             this.endGameTimer = new System.Windows.Forms.Timer(this.components);
             this.pauseLabel = new System.Windows.Forms.Label();
             this.muteLabel = new System.Windows.Forms.Label();
+            this.speedUp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Helicopter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1A)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1B)).BeginInit();
@@ -118,17 +119,18 @@
             // gameTimer
             // 
             this.gameTimer.Enabled = true;
-            this.gameTimer.Interval = 20;
-            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            this.gameTimer.Interval = 25;
+            this.gameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
             // 
             // obstacle1A
             // 
             this.obstacle1A.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.obstacle1A.BackColor = System.Drawing.Color.Lime;
+            this.obstacle1A.Cursor = System.Windows.Forms.Cursors.Default;
             this.obstacle1A.Location = new System.Drawing.Point(288, -380);
             this.obstacle1A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle1A.Name = "obstacle1A";
-            this.obstacle1A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle1A.Size = new System.Drawing.Size(100, 600);
             this.obstacle1A.TabIndex = 1;
             this.obstacle1A.TabStop = false;
             // 
@@ -139,7 +141,7 @@
             this.obstacle1B.Location = new System.Drawing.Point(288, 420);
             this.obstacle1B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle1B.Name = "obstacle1B";
-            this.obstacle1B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle1B.Size = new System.Drawing.Size(100, 600);
             this.obstacle1B.TabIndex = 2;
             this.obstacle1B.TabStop = false;
             // 
@@ -150,7 +152,7 @@
             this.obstacle2B.Location = new System.Drawing.Point(358, 420);
             this.obstacle2B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle2B.Name = "obstacle2B";
-            this.obstacle2B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle2B.Size = new System.Drawing.Size(100, 600);
             this.obstacle2B.TabIndex = 4;
             this.obstacle2B.TabStop = false;
             // 
@@ -161,7 +163,7 @@
             this.obstacle2A.Location = new System.Drawing.Point(358, -380);
             this.obstacle2A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle2A.Name = "obstacle2A";
-            this.obstacle2A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle2A.Size = new System.Drawing.Size(100, 600);
             this.obstacle2A.TabIndex = 3;
             this.obstacle2A.TabStop = false;
             // 
@@ -172,7 +174,7 @@
             this.obstacle3B.Location = new System.Drawing.Point(428, 420);
             this.obstacle3B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle3B.Name = "obstacle3B";
-            this.obstacle3B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle3B.Size = new System.Drawing.Size(100, 600);
             this.obstacle3B.TabIndex = 6;
             this.obstacle3B.TabStop = false;
             // 
@@ -183,7 +185,7 @@
             this.obstacle3A.Location = new System.Drawing.Point(428, -380);
             this.obstacle3A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle3A.Name = "obstacle3A";
-            this.obstacle3A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle3A.Size = new System.Drawing.Size(100, 600);
             this.obstacle3A.TabIndex = 5;
             this.obstacle3A.TabStop = false;
             // 
@@ -194,7 +196,7 @@
             this.obstacle4B.Location = new System.Drawing.Point(498, 420);
             this.obstacle4B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle4B.Name = "obstacle4B";
-            this.obstacle4B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle4B.Size = new System.Drawing.Size(100, 600);
             this.obstacle4B.TabIndex = 8;
             this.obstacle4B.TabStop = false;
             // 
@@ -205,7 +207,7 @@
             this.obstacle4A.Location = new System.Drawing.Point(498, -380);
             this.obstacle4A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle4A.Name = "obstacle4A";
-            this.obstacle4A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle4A.Size = new System.Drawing.Size(100, 600);
             this.obstacle4A.TabIndex = 7;
             this.obstacle4A.TabStop = false;
             // 
@@ -216,7 +218,7 @@
             this.obstacle5B.Location = new System.Drawing.Point(568, 420);
             this.obstacle5B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle5B.Name = "obstacle5B";
-            this.obstacle5B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle5B.Size = new System.Drawing.Size(100, 600);
             this.obstacle5B.TabIndex = 10;
             this.obstacle5B.TabStop = false;
             // 
@@ -227,7 +229,7 @@
             this.obstacle5A.Location = new System.Drawing.Point(568, -380);
             this.obstacle5A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle5A.Name = "obstacle5A";
-            this.obstacle5A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle5A.Size = new System.Drawing.Size(100, 600);
             this.obstacle5A.TabIndex = 9;
             this.obstacle5A.TabStop = false;
             // 
@@ -238,7 +240,7 @@
             this.obstacle6B.Location = new System.Drawing.Point(638, 420);
             this.obstacle6B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle6B.Name = "obstacle6B";
-            this.obstacle6B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle6B.Size = new System.Drawing.Size(100, 600);
             this.obstacle6B.TabIndex = 12;
             this.obstacle6B.TabStop = false;
             // 
@@ -249,7 +251,7 @@
             this.obstacle6A.Location = new System.Drawing.Point(638, -380);
             this.obstacle6A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle6A.Name = "obstacle6A";
-            this.obstacle6A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle6A.Size = new System.Drawing.Size(100, 600);
             this.obstacle6A.TabIndex = 11;
             this.obstacle6A.TabStop = false;
             // 
@@ -260,7 +262,7 @@
             this.obstacle7B.Location = new System.Drawing.Point(708, 420);
             this.obstacle7B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle7B.Name = "obstacle7B";
-            this.obstacle7B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle7B.Size = new System.Drawing.Size(100, 600);
             this.obstacle7B.TabIndex = 14;
             this.obstacle7B.TabStop = false;
             // 
@@ -271,7 +273,7 @@
             this.obstacle7A.Location = new System.Drawing.Point(708, -380);
             this.obstacle7A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle7A.Name = "obstacle7A";
-            this.obstacle7A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle7A.Size = new System.Drawing.Size(100, 600);
             this.obstacle7A.TabIndex = 13;
             this.obstacle7A.TabStop = false;
             // 
@@ -282,7 +284,7 @@
             this.obstacle8B.Location = new System.Drawing.Point(778, 420);
             this.obstacle8B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle8B.Name = "obstacle8B";
-            this.obstacle8B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle8B.Size = new System.Drawing.Size(100, 600);
             this.obstacle8B.TabIndex = 16;
             this.obstacle8B.TabStop = false;
             // 
@@ -293,7 +295,7 @@
             this.obstacle8A.Location = new System.Drawing.Point(778, -380);
             this.obstacle8A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle8A.Name = "obstacle8A";
-            this.obstacle8A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle8A.Size = new System.Drawing.Size(100, 600);
             this.obstacle8A.TabIndex = 15;
             this.obstacle8A.TabStop = false;
             // 
@@ -304,7 +306,7 @@
             this.obstacle9B.Location = new System.Drawing.Point(848, 420);
             this.obstacle9B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle9B.Name = "obstacle9B";
-            this.obstacle9B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle9B.Size = new System.Drawing.Size(100, 600);
             this.obstacle9B.TabIndex = 18;
             this.obstacle9B.TabStop = false;
             // 
@@ -315,7 +317,7 @@
             this.obstacle9A.Location = new System.Drawing.Point(848, -380);
             this.obstacle9A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle9A.Name = "obstacle9A";
-            this.obstacle9A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle9A.Size = new System.Drawing.Size(100, 600);
             this.obstacle9A.TabIndex = 17;
             this.obstacle9A.TabStop = false;
             // 
@@ -326,7 +328,7 @@
             this.obstacle13B.Location = new System.Drawing.Point(1128, 420);
             this.obstacle13B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle13B.Name = "obstacle13B";
-            this.obstacle13B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle13B.Size = new System.Drawing.Size(100, 600);
             this.obstacle13B.TabIndex = 26;
             this.obstacle13B.TabStop = false;
             // 
@@ -337,7 +339,7 @@
             this.obstacle13A.Location = new System.Drawing.Point(1128, -380);
             this.obstacle13A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle13A.Name = "obstacle13A";
-            this.obstacle13A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle13A.Size = new System.Drawing.Size(100, 600);
             this.obstacle13A.TabIndex = 25;
             this.obstacle13A.TabStop = false;
             // 
@@ -348,7 +350,7 @@
             this.obstacle12B.Location = new System.Drawing.Point(1058, 420);
             this.obstacle12B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle12B.Name = "obstacle12B";
-            this.obstacle12B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle12B.Size = new System.Drawing.Size(100, 600);
             this.obstacle12B.TabIndex = 24;
             this.obstacle12B.TabStop = false;
             // 
@@ -359,7 +361,7 @@
             this.obstacle12A.Location = new System.Drawing.Point(1058, -380);
             this.obstacle12A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle12A.Name = "obstacle12A";
-            this.obstacle12A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle12A.Size = new System.Drawing.Size(100, 600);
             this.obstacle12A.TabIndex = 23;
             this.obstacle12A.TabStop = false;
             // 
@@ -370,7 +372,7 @@
             this.obstacle11B.Location = new System.Drawing.Point(988, 420);
             this.obstacle11B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle11B.Name = "obstacle11B";
-            this.obstacle11B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle11B.Size = new System.Drawing.Size(100, 600);
             this.obstacle11B.TabIndex = 22;
             this.obstacle11B.TabStop = false;
             // 
@@ -381,7 +383,7 @@
             this.obstacle11A.Location = new System.Drawing.Point(988, -380);
             this.obstacle11A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle11A.Name = "obstacle11A";
-            this.obstacle11A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle11A.Size = new System.Drawing.Size(100, 600);
             this.obstacle11A.TabIndex = 21;
             this.obstacle11A.TabStop = false;
             // 
@@ -392,7 +394,7 @@
             this.obstacle10B.Location = new System.Drawing.Point(918, 420);
             this.obstacle10B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle10B.Name = "obstacle10B";
-            this.obstacle10B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle10B.Size = new System.Drawing.Size(100, 600);
             this.obstacle10B.TabIndex = 20;
             this.obstacle10B.TabStop = false;
             // 
@@ -403,7 +405,7 @@
             this.obstacle10A.Location = new System.Drawing.Point(918, -380);
             this.obstacle10A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle10A.Name = "obstacle10A";
-            this.obstacle10A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle10A.Size = new System.Drawing.Size(100, 600);
             this.obstacle10A.TabIndex = 19;
             this.obstacle10A.TabStop = false;
             // 
@@ -414,7 +416,7 @@
             this.obstacle14B.Location = new System.Drawing.Point(1198, 420);
             this.obstacle14B.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle14B.Name = "obstacle14B";
-            this.obstacle14B.Size = new System.Drawing.Size(90, 600);
+            this.obstacle14B.Size = new System.Drawing.Size(100, 600);
             this.obstacle14B.TabIndex = 28;
             this.obstacle14B.TabStop = false;
             // 
@@ -425,7 +427,7 @@
             this.obstacle14A.Location = new System.Drawing.Point(1198, -380);
             this.obstacle14A.Margin = new System.Windows.Forms.Padding(0);
             this.obstacle14A.Name = "obstacle14A";
-            this.obstacle14A.Size = new System.Drawing.Size(90, 600);
+            this.obstacle14A.Size = new System.Drawing.Size(100, 600);
             this.obstacle14A.TabIndex = 27;
             this.obstacle14A.TabStop = false;
             // 
@@ -479,7 +481,7 @@
             this.playAgainButton.Text = "Play Again";
             this.playAgainButton.UseVisualStyleBackColor = false;
             this.playAgainButton.Visible = false;
-            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
+            this.playAgainButton.Click += new System.EventHandler(this.PlayAgainButton_Click);
             // 
             // highScoreLabel
             // 
@@ -487,7 +489,7 @@
             this.highScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.highScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highScoreLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.highScoreLabel.Location = new System.Drawing.Point(332, 274);
+            this.highScoreLabel.Location = new System.Drawing.Point(311, 274);
             this.highScoreLabel.Name = "highScoreLabel";
             this.highScoreLabel.Size = new System.Drawing.Size(207, 39);
             this.highScoreLabel.TabIndex = 33;
@@ -509,14 +511,14 @@
             // 
             // endGameTimer
             // 
-            this.endGameTimer.Tick += new System.EventHandler(this.endGameTimer_Tick);
+            this.endGameTimer.Tick += new System.EventHandler(this.EndGameTimer_Tick);
             // 
             // pauseLabel
             // 
             this.pauseLabel.AutoSize = true;
             this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
             this.pauseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pauseLabel.Location = new System.Drawing.Point(720, 34);
+            this.pauseLabel.Location = new System.Drawing.Point(730, 34);
             this.pauseLabel.Name = "pauseLabel";
             this.pauseLabel.Size = new System.Drawing.Size(148, 25);
             this.pauseLabel.TabIndex = 35;
@@ -528,20 +530,35 @@
             this.muteLabel.AutoSize = true;
             this.muteLabel.BackColor = System.Drawing.Color.Transparent;
             this.muteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.muteLabel.Location = new System.Drawing.Point(731, 9);
+            this.muteLabel.Location = new System.Drawing.Point(743, 9);
             this.muteLabel.Name = "muteLabel";
             this.muteLabel.Size = new System.Drawing.Size(135, 25);
             this.muteLabel.TabIndex = 36;
             this.muteLabel.Text = "Music Muted";
             this.muteLabel.Visible = false;
             // 
-            // Form1
+            // speedUp
+            // 
+            this.speedUp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.speedUp.AutoSize = true;
+            this.speedUp.BackColor = System.Drawing.Color.Transparent;
+            this.speedUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedUp.ForeColor = System.Drawing.Color.DarkGreen;
+            this.speedUp.Location = new System.Drawing.Point(156, 20);
+            this.speedUp.Name = "speedUp";
+            this.speedUp.Size = new System.Drawing.Size(280, 39);
+            this.speedUp.TabIndex = 37;
+            this.speedUp.Text = "Game Messages";
+            this.speedUp.Visible = false;
+            // 
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.speedUp);
             this.Controls.Add(this.muteLabel);
             this.Controls.Add(this.pauseLabel);
             this.Controls.Add(this.NewHighScoreLabel);
@@ -583,8 +600,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(900, 600);
             this.MinimumSize = new System.Drawing.Size(900, 600);
-            this.Name = "Form1";
+            this.Name = "Game";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Heli Pilot";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownPressed);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpPressed);
@@ -665,6 +684,6 @@
         private System.Windows.Forms.Timer endGameTimer;
         private System.Windows.Forms.Label pauseLabel;
         private System.Windows.Forms.Label muteLabel;
+        private System.Windows.Forms.Label speedUp;
     }
 }
-
