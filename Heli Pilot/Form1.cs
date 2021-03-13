@@ -22,11 +22,19 @@ namespace Heli_Pilot
         readonly System.Media.SoundPlayer explosionPlayer = new System.Media.SoundPlayer(Properties.Resources.ExplosionSound);
 
 
-        public Game()
+        public Game(string musicState)
         {
             InitializeComponent();
             this.highscore = LoadHighScore();
-            musicPlayer.PlayLooping();
+            if(musicState != "mute")
+            {
+                musicPlayer.PlayLooping();
+            }
+            else
+            {
+                muteLabel.Visible = true;
+                musicMuted = true;
+            }
         }
 
         /// <summary>
@@ -483,7 +491,12 @@ namespace Heli_Pilot
         /// <param name="e"></param>
         private void PlayAgainButton_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+            //Application.Restart();
+            if(musicMuted)
+                System.Diagnostics.Process.Start(Application.ExecutablePath, "mute");
+            else
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+            this.Close(); //to turn off current app
         }
 
         /// <summary>
