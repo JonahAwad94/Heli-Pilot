@@ -160,7 +160,15 @@ namespace Heli_Pilot
         private void GameTimer_Tick(object sender, EventArgs e)
         {
             Helicopter.Top += verticleDirection;
-            Helicopter.Left += horizontalDirection;
+
+            // Prevent Helicopter from flying off sides of screen
+            if (Helicopter.Left > 0 && Helicopter.Right < 900)
+                Helicopter.Left += horizontalDirection;
+            else if (Helicopter.Left <= 0)
+                Helicopter.Left = 1;
+            else
+                Helicopter.Left = 723;
+
             score++;
             gameScore.Text = score.ToString();
 

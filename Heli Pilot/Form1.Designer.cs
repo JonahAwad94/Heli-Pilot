@@ -105,6 +105,7 @@
             // 
             // Helicopter
             // 
+            this.Helicopter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Helicopter.BackColor = System.Drawing.Color.Transparent;
             this.Helicopter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Helicopter.Image = global::Heli_Pilot.Properties.Resources.helicopter1;
