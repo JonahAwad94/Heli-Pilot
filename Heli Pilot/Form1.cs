@@ -21,7 +21,11 @@ namespace Heli_Pilot
         readonly System.Media.SoundPlayer musicPlayer = new System.Media.SoundPlayer(Properties.Resources.music);
         readonly System.Media.SoundPlayer explosionPlayer = new System.Media.SoundPlayer(Properties.Resources.ExplosionSound);
 
-
+        /// <summary>
+        /// Constructor: Initiates game
+        /// Input: "musicState" checks if game is started in mute state
+        /// </summary>
+        /// <param name="musicState"></param>
         public Game(string musicState)
         {
             InitializeComponent();
@@ -159,8 +163,11 @@ namespace Heli_Pilot
         /// <param name="e"></param>
         private void GameTimer_Tick(object sender, EventArgs e)
         {
+            // Update helicopter verticle movement
             Helicopter.Top += verticleDirection;
 
+
+            // Update helicopter horizontal movement
             // Prevent Helicopter from flying off sides of screen
             if (Helicopter.Left > 0 && Helicopter.Right < 900)
                 Helicopter.Left += horizontalDirection;
@@ -169,11 +176,12 @@ namespace Heli_Pilot
             else
                 Helicopter.Left = 723;
 
+            // Update score
             score++;
             gameScore.Text = score.ToString();
 
 
-            // Increase speed, change background
+            // Increase speed, change background with higher score
             if (score == 500)
             {
                 this.BackColor = Color.FromArgb(90, 180, 180);
@@ -239,7 +247,7 @@ namespace Heli_Pilot
             }
 
 
-            //Detect Collision
+            // Detect Collision
             if (
                 Helicopter.Bounds.IntersectsWith(obstacle1A.Bounds) ||
                 Helicopter.Bounds.IntersectsWith(obstacle1B.Bounds) ||
@@ -288,7 +296,7 @@ namespace Heli_Pilot
                 if (obstacle1A.Top > -200)
                     obstacle1A.Top = -200;
             }
-            // Bottom obstacle's lcocation is tied to top obstacle's location
+            // Bottom obstacle's location is tied to top obstacle's location
             obstacle1B.Left = obstacle1A.Left; 
             obstacle1B.Top = obstacle1A.Top + 850; 
 
@@ -471,6 +479,7 @@ namespace Heli_Pilot
             gameTimer.Stop();
             endGameTimer.Start();
 
+            // Stop music, play explosion sound
             musicPlayer.Stop();
             explosionPlayer.Play();
 
@@ -479,7 +488,7 @@ namespace Heli_Pilot
             playAgainButton.Enabled = true;
             playAgainButton.Visible = true;
 
-            // update and save high score
+            // Update and save high score
             if (score > highscore)
             {
                 highscore = score;
@@ -487,24 +496,23 @@ namespace Heli_Pilot
                 NewHighScoreLabel.Visible = true;
             }
 
-            // display high score
+            // Display high score
             highScoreLabel.Text = "High Score: " + highscore.ToString();
             highScoreLabel.Visible = true;
         }
 
         /// <summary>
-        /// Restarts game
+        /// Restarts game, if music is muted, new game will be muted as well
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PlayAgainButton_Click(object sender, EventArgs e)
         {
-            //Application.Restart();
             if(musicMuted)
                 System.Diagnostics.Process.Start(Application.ExecutablePath, "mute");
             else
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
-            this.Close(); //to turn off current app
+            this.Close(); // close this instance of application
         }
 
         /// <summary>
@@ -514,6 +522,7 @@ namespace Heli_Pilot
         /// <param name="e"></param>
         private void EndGameTimer_Tick(object sender, EventArgs e)
         {
+            // Iterate through explosion sprites
             if (explosionSprite == 0)
             {
                 Helicopter.Image = Properties.Resources.explosion1;
