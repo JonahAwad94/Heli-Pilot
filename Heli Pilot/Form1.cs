@@ -8,6 +8,8 @@ namespace Heli_Pilot
     public partial class Game : Form
     {
         readonly int obstacleSpeed = 15;
+        bool cheat = false; // If cheat mode is currently active
+        bool cheatedGame = false; // Ever used cheat mode in game
 
         int explosionSprite = 0;
         int verticleDirection = 0;
@@ -78,8 +80,9 @@ namespace Heli_Pilot
 
         /// <summary>
         /// - Moves helicopter
-        /// - pauses/resumes game
-        /// - mutes/unmutes music
+        /// - Pauses/resumes game
+        /// - Mutes/unmutes music
+        /// - Cheat mode
         /// depending on key pressed.
         /// </summary>
         /// <param name="sender"></param>
@@ -142,6 +145,17 @@ namespace Heli_Pilot
                     pauseLabel.Visible = true;
                     gamePaused = true;
                 }
+            }
+
+            // Cheat mode
+            if (e.KeyCode == Keys.Oemtilde)
+            {
+                if (cheat)
+                    cheat = false;
+                else
+                    cheat = true;
+
+                cheatedGame = true;
             }
         }
 
@@ -210,7 +224,6 @@ namespace Heli_Pilot
                 gameTimer.Interval = 16;
                 speedUp.Text = "You're good...FULL SPEED AHEAD!!!";
                 speedUp.Visible = true;
-
             }
             else if (score == 1650)
                 speedUp.Visible = false;
@@ -279,7 +292,8 @@ namespace Heli_Pilot
                 Helicopter.Bounds.IntersectsWith(obstacle14B.Bounds)
               )
             {
-                EndGame();
+                if(!cheat)
+                    EndGame();
             }
 
             // Transition all obstacles from right to left
@@ -488,8 +502,9 @@ namespace Heli_Pilot
             playAgainButton.Enabled = true;
             playAgainButton.Visible = true;
 
-            // Update and save high score
-            if (score > highscore)
+            // Update and save high score as long as you didn't cheat at any
+            // point in the current game
+            if (score > highscore && !cheatedGame)
             {
                 highscore = score;
                 SaveHighScore(highscore);

@@ -17,8 +17,11 @@ Helicopter Pilot game made with Windows Forms and ASP.NET/C#
 - _A_ or _Left Key_ to move left
 - _M_ to mute/unmute music
 - _P_ to pause/resume game
+- ~ (tilde) to enter cheat mode (disables collision)
+  - Press ~ again to re-enable collision
+  - If cheat mode was ever enabled in a game, the score will not be saved
 
 # Notes:
 - Windows Forms is only intended to work on the Windows operating system.
-- Current release: 1.0.6.2
+- Current release: 1.0.7.0
 - To play the latest version, be sure to uninstall any previous versions first.
